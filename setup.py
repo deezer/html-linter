@@ -26,7 +26,7 @@ setup(
     packages=find_packages(exclude=['test']),
     install_requires=['template-remover', 'docopt==0.6.1'],
     tests_require=['nose>=1.3'],
-    scripts=['scripts/html5_lint.py'],
+    scripts=['scripts/html_lint.py'],
     classifiers=[
         'Development Status :: 3 - Alpha',
         'Environment :: Console',
