@@ -91,9 +91,7 @@ You can install, upgrade or uninstall git-lint with these commands::
 Python Versions
 ---------------
 
-Python 2.7, 3.2 and 3.3 are officially supported. Python 2.6 is not officially
-supported because assertRaises has different semantics, althought all the other
-tests pass.
+Python 2.7, 3.2 and 3.3 are officially supported.
 
 Development
 -----------
