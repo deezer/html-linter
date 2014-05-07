@@ -34,7 +34,7 @@ Options:
   --disable=checks A comma separated list of checks to disable. Valid names are:
                    doctype, entities, trailing_whitespace, tabs, charset,
                    void_element, optional_tag, type_attribute,
-                   concerns_separation, protocol, names, encoding,
+                   concerns_separation, protocol, names,
                    capitalization, quotation, indentation, formatting,
                    boolean_attribute, invalid_attribute, void_zero,
                    invalid_handler, http_equiv, extra_whitespace.
@@ -66,7 +66,6 @@ _DISABLE_MAP = {
     'concerns_separation': html_linter.ConcernsSeparationMessage,
     'protocol': html_linter.ProtocolMessage,
     'names': html_linter.NameMessage,
-    'encoding': html_linter.EncodingMessage,
     'capitalization': html_linter.CapitalizationMessage,
     'quotation': html_linter.QuotationMessage,
     'indentation': html_linter.IndentationMessage,
