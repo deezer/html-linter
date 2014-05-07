@@ -1,0 +1,64 @@
+<!-- Invalid Doctype -->
+<!DOCtype HTML>
+<html>
+<!-- Missing meta charset -->
+<!-- Invalid http-equiv -->
+    <meta http-equiv="content-language" content="en">
+<!-- Type Attribute -->
+<!-- Concerns Separation -->
+    <script type="text/javascript"></script>
+    <style type="text/css"></style>
+    <link type="text/css">
+<body>
+<!-- Trailing whitespace -->
+ 
+<!-- Tabs -->
+	A tab
+
+<!-- Void Element -->
+<br/>
+
+<!-- Concerns Separation -->
+<a href="javascript:foo()" style="color:red" onfocus="bar()">A</a>
+
+<!-- Protocol -->
+<a href="http://foo.com">Foo.com</a>
+
+<!-- Names -->
+<div class="foo_bar" id="MYID"></div>
+
+<!-- Capitalization -->
+<A HREF="foo">foo</A>
+
+<!-- Quotation -->
+<a href=foo>Foo</a>
+
+<!-- Indentation -->
+ <a href="foo">foo</a>
+
+<!-- Block element does not start in new line -->
+<div></div><div></div>
+
+<!-- Boolean attribute -->
+<input type="radio" checked="checked">
+
+<!-- Invalid attributes -->
+<script charset="utf-8" language="javascript"></script>
+<a name="foo">
+
+<!-- javascript:void(0) link -->
+<a href="javascript:void(0)"
+   target="_blank">Void 0 Link</a>
+</body>
+
+<!-- Invalid handler -->
+<a onfocus="javascript:bar()">A</a>
+
+<!-- Extra whitespaces -->
+<a  onfocus = "" >A</ a >
+
+<!-- HTML Entities -->
+<div>
+    <p>The Euro sign is &euro; or &#8364;. In a link they render like this <a href="&euro;&#8364">Euro Doc</a></p>
+</div>
+</html>
