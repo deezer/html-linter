@@ -14,7 +14,7 @@
 
 from setuptools import setup, find_packages
 
-print find_packages()
+
 setup(
     name='html-linter',
     version='0.1.1',
