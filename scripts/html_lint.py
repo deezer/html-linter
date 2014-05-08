@@ -46,6 +46,7 @@ from __future__ import division
 from __future__ import print_function
 from __future__ import unicode_literals
 
+import codecs
 import io
 import sys
 
@@ -84,6 +85,11 @@ __VERSION__ = '0.1'
 
 def main():
     """Entry point for the HTML5 Linter."""
+
+    # Wrap sys stdout for python 2, so print can understand unicode.
+    if sys.version_info[0] < 3:
+        sys.stdout = codecs.getwriter("utf-8")(sys.stdout)
+
     options = docopt.docopt(__doc__,
                             help=True,
                             version='html5_lint v%s' % __VERSION__)
@@ -101,6 +107,7 @@ def main():
     exclude = [_DISABLE_MAP[d] for d in disable if d in _DISABLE_MAP]
     clean_html = template_remover.clean(io.open(options['FILENAME']).read())
     print(html_linter.lint(clean_html, exclude=exclude))
+
     return 0
 
 if __name__ == '__main__':
