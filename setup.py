@@ -17,7 +17,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='html-linter',
-    version='0.1.4',
+    version='0.1.5',
     description='Lints an HTML5 file using Google\'s style guide',
     long_description=open('README.rst').read(),
     author='Sebastian Kreft - Deezer',
