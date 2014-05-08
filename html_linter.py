@@ -609,7 +609,7 @@ class HTML5Linter(HTMLParser.HTMLParser):
 
         self._check_optional_opening_tag(tag, attrs)
         self._check_starttag_capitalization(tag)
-        self._check_attributes_case_and_quotation(tag, attrs)
+        self._check_attributes_case_quotation_entities(tag, attrs)
 
         self._check_boolean_attributes(attrs)
 
@@ -789,7 +789,7 @@ class HTML5Linter(HTMLParser.HTMLParser):
                                       column=self.getcolumn() + 1,
                                       tag=original_tag))
 
-    def _check_attributes_case_and_quotation(self, tag, unused_attrs):
+    def _check_attributes_case_quotation_entities(self, tag, unused_attrs):
         original_def = self.get_starttag_text()
         for match in HTMLParser.attrfind.finditer(original_def, len(tag) + 1):
             if not match.group(1).islower():
@@ -818,6 +818,8 @@ class HTML5Linter(HTMLParser.HTMLParser):
             current_pos = self.getpos()
             line, column = self.getline(), self.getcolumn()
             for entity_match in HTMLParser.entityref.finditer(match.group(3)):
+                if not entity_match.group().endswith(';'):
+                    continue
                 self.line, self.offset = get_line_column(
                     original_def, line, column,
                     entity_match.start(0) + match.start(3))
@@ -825,6 +827,8 @@ class HTML5Linter(HTMLParser.HTMLParser):
                 self.handle_entityref(entity_match.group(1))
 
             for entity_match in HTMLParser.charref.finditer(match.group(3)):
+                if not entity_match.group().endswith(';'):
+                    continue
                 self.line, self.offset = get_line_column(
                     original_def, line, column,
                     entity_match.start(0) + match.start(3))

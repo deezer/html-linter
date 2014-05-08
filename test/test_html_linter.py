@@ -74,6 +74,17 @@ class TestHTML5Linter(unittest.TestCase):
                 '<a href="&lt; &gt; &nbsp; &amp;">').messages
         )
 
+    def test_entity_reference_must_have_semicolon(self):
+        self.assertEquals(
+            [],
+            html_linter.HTML5Linter(
+                '<a href="foo?foo=foo&bar=bar&baz=baz">').messages
+        )
+        self.assertEquals(
+            [],
+            html_linter.HTML5Linter('<a href=" &aacute= ">').messages
+        )
+
     def test_char_references(self):
         self.assertEquals(
             [html_linter.EntityReferenceMessage(
@@ -86,6 +97,12 @@ class TestHTML5Linter(unittest.TestCase):
             [html_linter.EntityReferenceMessage(
                 line=1, column=11, entity='&#32;')],
             html_linter.HTML5Linter('<a href=" &#32; ">').messages
+        )
+
+    def test_char_reference_must_have_semicolon(self):
+        self.assertEquals(
+            [],
+            html_linter.HTML5Linter('<a href=" &#32= ">').messages
         )
 
     def test_trailing_whitespace(self):
