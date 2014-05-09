@@ -63,7 +63,7 @@ html_linter used the project
 PHP and Jinja markup from the files and this project works has some limitations.
 
 
-One example that won't work is the following:::
+One example that won't work is the following::
 
   <?php echo "?>" ?>
 
@@ -82,7 +82,7 @@ Below are example of how template_remover.py is used::
 Installation
 ------------
 
-You can install, upgrade or uninstall git-lint with these commands::
+You can install, upgrade or uninstall html-linter with these commands::
 
   $ pip install html-linter
   $ pip install --upgrade html-linter
@@ -91,7 +91,7 @@ You can install, upgrade or uninstall git-lint with these commands::
 Python Versions
 ---------------
 
-Python 2.7, 3.2 and 3.3 are officially supported.
+Python 2.7 is officially supported, 3.2, 3.3 and 3.4 should also work.
 
 Development
 -----------
