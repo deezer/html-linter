@@ -412,6 +412,22 @@ class TestHTML5Linter(unittest.TestCase):
                 line=2, column=1, indent=1, max_indent=4)],
             html_linter.HTML5Linter('  <a></a>\n </div>\n<div>').messages
         )
+        # If we indented by something greater than the maximum allowed we
+        # normalize it to the previous maximum.
+        self.assertEquals(
+            [html_linter.IndentationMessage(
+                line=2, column=1, indent=3, max_indent=2)],
+            html_linter.HTML5Linter('<a></a>\n   </div>\n    <div>').messages
+        )
+        # This case should raise two warnings, because the first indentation is
+        # normalized to 2 spaces and the second is 6 spaces.
+        self.assertEquals(
+            [html_linter.IndentationMessage(
+                line=2, column=1, indent=3, max_indent=2),
+             html_linter.IndentationMessage(
+                line=3, column=1, indent=6, max_indent=4)],
+            html_linter.HTML5Linter('<a></a>\n   </div>\n      <div>').messages
+        )
 
         self.assertEquals(
             [],
@@ -528,14 +544,14 @@ class TestHTML5LinterFunction(unittest.TestCase):
 
     def test_invalid(self):
         self.assertEquals(
-            69, len(html_linter.lint(self.invalid_html).split('\n')))
+            49, len(html_linter.lint(self.invalid_html).split('\n')))
         self.assertEquals(
-            68,
+            48,
             len(html_linter.lint(
                 self.invalid_html,
                 exclude=[html_linter.HTTPEquivMessage]).split('\n')))
         self.assertEquals(
-            63,
+            43,
             len(html_linter.lint(
                 self.invalid_html,
                 exclude=[html_linter.HTTPEquivMessage,

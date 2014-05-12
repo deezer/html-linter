@@ -898,7 +898,9 @@ class HTML5Linter(HTMLParser.HTMLParser):
                                    indent=indentation,
                                    max_indent=self._last_indent + 2))
             # Normalize the indentation, so to minimize subsequent indents.
-            if indentation > self._last_indent:
+            if indentation > self._last_indent + 2:
+                indentation = self._last_indent + 2
+            elif indentation > self._last_indent:
                 indentation += 1
             else:
                 indentation -= 1
