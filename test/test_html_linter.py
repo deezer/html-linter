@@ -386,6 +386,15 @@ class TestHTML5Linter(unittest.TestCase):
                 '<A HREF="">foo</A>\n<a itemScope>').messages
         )
 
+    def test_case_with_numeric_attribute(self):
+        # Tests https://github.com/deezer/html-linter/issues/3, because of
+        # python bug http://bugs.python.org/issue13822.
+        self.assertEquals(
+            [],
+            html_linter.HTML5Linter(
+                '<a href="" 0>foo</a>').messages
+        )
+
     def test_quotation(self):
         self.assertEquals(
             [html_linter.QuotationMessage(line=1, column=9, quotation="'"),

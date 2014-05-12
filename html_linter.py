@@ -521,6 +521,11 @@ class HTML5Linter(HTMLParser.HTMLParser):
         self._endtag_text = None
 
         HTMLParser.HTMLParser.__init__(self)
+
+        # In case we are dealing with Python 3, set it to non-strict mode.
+        if hasattr(self, 'strict'):
+            self.strict = False
+
         self.feed(html)
         self.close()
 
@@ -783,7 +788,8 @@ class HTML5Linter(HTMLParser.HTMLParser):
     def _check_starttag_capitalization(self, tag):
         original_def = self.get_starttag_text()
         original_tag = original_def[1:len(tag) + 1]
-        if not original_tag.islower():
+        # We do not use islower() due to http://bugs.python.org/issue13822.
+        if original_tag != original_tag.lower():
             self._messages.append(
                 CapitalizationMessage(line=self.getline(),
                                       column=self.getcolumn() + 1,
@@ -792,7 +798,8 @@ class HTML5Linter(HTMLParser.HTMLParser):
     def _check_attributes_case_quotation_entities(self, tag, unused_attrs):
         original_def = self.get_starttag_text()
         for match in HTMLParser.attrfind.finditer(original_def, len(tag) + 1):
-            if not match.group(1).islower():
+            # We do not use islower() due to http://bugs.python.org/issue13822.
+            if match.group(1) != match.group(1).lower():
                 line, column = self.get_attribute_line_column(
                     match.group(1).lower())
                 self._messages.append(
@@ -867,7 +874,8 @@ class HTML5Linter(HTMLParser.HTMLParser):
 
     def _check_endtag_capitalization(self):
         endtag = self.get_endtag_text()
-        if endtag and not endtag.islower():
+        # We do not use islower() due to http://bugs.python.org/issue13822.
+        if endtag and endtag != endtag.lower():
             match = HTMLParser.endtagfind.match(endtag)  # </ + tag + >
             original_endtag = match.group(1)
             self._messages.append(
