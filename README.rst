@@ -23,7 +23,7 @@ quite open to accept any malformed/invalid/incomplete input.
 That's why we decided to have an automated tool to check our coding standard.
 
 We start with the
-`Google standard <https://google-styleguide.googlecode.com/svn/trunk/htmlcssguide.xml>`_
+`Google standard <https://google.github.io/styleguide/htmlcssguide.xml>`_
 and we enhance it with some extra rules deinfed by the project
 `html-minifier <https://github.com/kangax/html-minifier>`_. You can read his
 detailed `article <http://perfectionkills.com/experimenting-with-html-minifier/#remove_redundant_attributes>`_.
